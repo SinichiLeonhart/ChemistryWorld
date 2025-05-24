@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry World</title>
+    <style>
+        /* Halaman Pembuka */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 1s;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+        }
+
+        /* Halaman Utama */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0a192f;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #1a365d;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-button {
+            background: #2b6cb0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #4299e1;
+        }
+
+        .content-section {
+            display: none;
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .chemistry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .chemistry-card {
+            background: white;
+            color: #1a365d;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #game-section {
+            text-align: center;
+        }
+
+        .molecule-option {
+            background: #2b6cb0;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman Pembuka -->
+    <div id="splash-screen">
+        <div class="login-box">
+            <h2>Welcome to Chemistry World</h2>
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <button onclick="checkName()">Enter</button>
+            <p id="errorMsg" style="color: red; display: none;">Nama salah!</p>
+        </div>
+    </div>
+
+    <!-- Halaman Utama -->
+    <div id="main-content" style="display: none;">
+        <nav class="navbar">
+            <button class="nav-button" onclick="showSection('penjelasan')">Penjelasan</button>
+            <button class="nav-button" onclick="showSection('contoh')">Contoh</button>
+            <button class="nav-button" onclick="showSection('game')">Game</button>
+            <button class="nav-button" onclick="showSection('credit')">Credit</button>
+        </nav>
+
+        <!-- Sections -->
+        <div id="penjelasan" class="content-section active-section">
+            <h2>Penjelasan Kimia</h2>
+            <p>Kimia adalah ilmu yang mempelajari komposisi, struktur, sifat, dan perubahan materi.</p>
+            <h3>Jenis-jenis Bentuk Atom</h3>
+            <ul>
+                <li>Linear</li>
+                <li>Trigonal Planar</li>
+                <li>Tetrahedral</li>
+            </ul>
+            <h3>Tokoh Penting</h3>
+            <ul>
+                <li>Antoine Lavoisier</li>
+                <li>Dmitri Mendeleev</li>
+                <li>Marie Curie</li>
+            </ul>
+        </div>
+
+        <div id="contoh" class="content-section">
+            <div class="chemistry-grid">
+                <div class="chemistry-card">
+                    <img src="https://via.placeholder.com/150" alt="Struktur Atom">
+                    <p>Struktur Atom</p>
+                </div>
+                <div class="chemistry-card">
+                    <img src="https://via.placeholder.com/150" alt="Bentuk Molekul">
+                    <p>Bentuk Molekul</p>
+                </div>
+                <div class="chemistry-card">
+                    <img src="https://via.placeholder.com/150" alt="Tokoh Kimia">
+                    <p>Tokoh Kimia</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="game" class="content-section">
+            <h2>Tebak Bentuk Molekul</h2>
+            <p>Manakah gambar yang menunjukkan bentuk tetrahedral?</p>
+            <div class="molecule-option" onclick="checkAnswer(1)">Option 1</div>
+            <div class="molecule-option" onclick="checkAnswer(2)">Option 2</div>
+            <div class="molecule-option" onclick="checkAnswer(3)">Option 3</div>
+            <p id="result"></p>
+        </div>
+
+        <div id="credit" class="content-section">
+            <h2>Credit</h2>
+            <p>Pembuat: Riko Yudianhar</p>
+            <p>Kelas: 10-2</p>
+            <p>SMA Pasundan 4 Bandung</p>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk halaman pembuka
+        function checkName() {
+            const name = document.getElementById('nameInput').value;
+            if(name === "Riko Yudianhar") {
+                document.getElementById('splash-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        // Fungsi untuk navigasi
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(div => {
+                div.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Fungsi game
+        function checkAnswer(answer) {
+            const correctAnswer = 3;
+            const result = document.getElementById('result');
+            if(answer === correctAnswer) {
+                result.textContent = "Benar! Ini adalah bentuk tetrahedral";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Salah, coba lagi!";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
