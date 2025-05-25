@@ -158,6 +158,23 @@ Sementara itu, Erwin Schödinger yang menyempurnakan teori mekanika kuantum buat
             </ul>
         </div>
 
+        <div id="contoh" class="content-section">
+            <div class="chemistry-grid">
+                <div class="chemistry-card">
+                    <img src="https://pngtree.com/freepng/dalton-thomson-rutherford-and-bohr-atomic-model_6959836.html" alt="Struktur Atom">
+                    <p>Model Atom Dalton</p>
+                </div>
+                <div class="chemistry-card">
+                    <img src="https://via.placeholder.com/150" alt="Bentuk Molekul">
+                    <p>Bentuk Molekul</p>
+                </div>
+                <div class="chemistry-card">
+                    <img src="https://via.placeholder.com/150" alt="Tokoh Kimia">
+                    <p>Tokoh Kimia</p>
+                </div>
+            </div>
+        </div>
+
         <div id="game" class="content-section">
             <h2>Tebak Bentuk Molekul</h2>
             <p>Model atom manakah yang bentuk nya mirip roti kismis?</p>
@@ -167,82 +184,6 @@ Sementara itu, Erwin Schödinger yang menyempurnakan teori mekanika kuantum buat
             <div class="molecule-option" onclick="checkAnswer(4)">Model Dalton</div>
             <p id="result"></p>
         </div>
-        <!-- Game 2: Kombinasi Atom -->
-            <div id="game2" class="game-content" style="display:none;">
-                <h2>Buat Molekul Sederhana</h2>
-                <div class="game-container">
-                    <div class="element-selector">
-                        <h3>Pilih Atom:</h3>
-                        <button class="atom-btn" onclick="addAtom('H')">Hidrogen (H)</button>
-                        <button class="atom-btn" onclick="addAtom('O')">Oksigen (O)</button>
-                        <button class="atom-btn" onclick="addAtom('C')">Karbon (C)</button>
-                        <button class="atom-btn" onclick="clearCombination()">Reset</button>
-                    </div>
-                    
-                    <div class="combination-area">
-                        <h3>Kombinasi Anda:</h3>
-                        <div class="molecule-preview" id="molecule-preview"></div>
-                        <button class="nav-button" onclick="checkCombination()">Cek Molekul</button>
-                        <p id="combination-result"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="credit" class="content-section">
-            <!-- ... (konten credit tetap sama) ... -->
-        </div>
-    </div>
-
-    <script>
-        // ... (fungsi sebelumnya tetap sama) ...
-
-        // Fungsi untuk game kombinasi atom
-        let currentCombination = [];
-        
-        function addAtom(atom) {
-            currentCombination.push(atom);
-            updatePreview();
-        }
-
-        function clearCombination() {
-            currentCombination = [];
-            updatePreview();
-            document.getElementById("combination-result").textContent = "";
-        }
-
-        function updatePreview() {
-            const preview = document.getElementById("molecule-preview");
-            preview.textContent = currentCombination.join("");
-        }
-
-        function checkCombination() {
-            const result = document.getElementById("combination-result");
-            const combination = currentCombination.join("");
-            
-            const molecules = {
-                "H2O": "Air 💧 (Benar!)",
-                "CO2": "Karbon Dioksida 🌫️ (Benar!)",
-                "CH4": "Metana 🔥 (Benar!)",
-                "O3": "Ozon 🌍 (Benar!)"
-            };
-
-            if(molecules[combination]) {
-                result.textContent = molecules[combination];
-                result.style.color = "green";
-            } else {
-                result.textContent = "Kombinasi salah! Coba lagi!";
-                result.style.color = "red";
-            }
-        }
-
-        // Fungsi untuk switch game
-        function showGame(gameNumber) {
-            document.querySelectorAll('.game-content').forEach(div => {
-                div.style.display = 'none';
-            });
-            document.getElementById(`game${gameNumber}`).style.display = 'block';
-        }
 
         <div id="credit" class="content-section">
             <h2>Credit</h2>
